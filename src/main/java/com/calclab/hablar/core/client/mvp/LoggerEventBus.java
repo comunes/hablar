@@ -7,7 +7,7 @@ public class LoggerEventBus extends DefaultEventBus {
 
 	@Override
 	public void fireEvent(GwtEvent<?> event) {
-		GWT.log("EVENT: " + event.toDebugString(), null);
+        GWT.log("[emite event]: " + event.toDebugString(), null);
 		super.fireEvent(event);
 	}
 
