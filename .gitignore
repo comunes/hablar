@@ -1,5 +1,9 @@
 /target
 /war
+src/main/gwt-unitCache/
+src/main/webapp/WEB-INF/classes/
 
 # OSX
 .DS_Store
+
+
