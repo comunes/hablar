@@ -28,6 +28,28 @@
 			<name>Tigase</name>
 			<url>http://maven.tigase.org/</url>
 		</repository>
+    <repository>
+      <id>comunes-snapshots</id>
+      <name>Comunes Archiva Snapshot Repository</name>
+      <url>http://archiva.comunes.org/repository/comunes-snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>comunes-internal</id>
+      <name>Comunes Archiva Internal Repository</name>
+      <url>http://archiva.comunes.org/repository/comunes-internal/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
 	</repositories>
 	<dependencies>
 		<dependency>
