@@ -1,8 +1,7 @@
 package com.calclab.hablar.rooms.client;
 
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +10,7 @@ import org.mockito.Mockito;
 import com.calclab.emite.core.client.events.EmiteEventBus;
 import com.calclab.emite.core.client.xmpp.stanzas.XmppURI;
 import com.calclab.emite.xep.muc.client.Room;
+import com.calclab.emite.xep.muc.client.RoomManager;
 import com.calclab.hablar.core.client.page.PagePresenter.Visibility;
 import com.calclab.hablar.icons.client.AvatarProviderRegistry;
 import com.calclab.hablar.rooms.client.occupant.OccupantsDisplay;
@@ -37,7 +37,7 @@ public class RoomPresenterTests {
 		room = Mockito.mock(Room.class);
 		when(room.getURI()).thenReturn(XmppURI.uri("room@domain"));
 		when(room.getChatEventBus()).thenReturn(eventBus);
-		presenter = new RoomPresenter(emiteTester.session, emiteTester.roster, tester.getEventBus(), room, display, new AvatarProviderRegistry());
+        presenter = new RoomPresenter(emiteTester.session, emiteTester.roster, tester.getEventBus(), room, display, new AvatarProviderRegistry(), Mockito.mock(RoomManager.class));
 	}
 
 	/**

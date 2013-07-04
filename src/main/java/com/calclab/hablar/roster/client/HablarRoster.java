@@ -44,7 +44,7 @@ public class HablarRoster {
 		session.addSessionStateChangedHandler(true, new StateChangedHandler() {
 			@Override
 			public void onStateChanged(final StateChangedEvent event) {
-				if (SessionStates.ready.equals(event.getState())) {
+                if (session.isReady()) {
 					rosterPage.requestVisibility(Visibility.focused);
 				}
 			}

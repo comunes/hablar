@@ -62,7 +62,7 @@ public class LoginPage extends PagePresenter<LoginDisplay> {
 		String actionText, pageTitle;
 		ImageResource icon;
 		boolean actionEnabled;
-		if (SessionStates.isReady(state)) {
+        if (session.isReady()) {
 			actionText = LoginMessages.msg.logout();
 			actionEnabled = true;
 			final String userName = session.getCurrentUserURI().getNode();

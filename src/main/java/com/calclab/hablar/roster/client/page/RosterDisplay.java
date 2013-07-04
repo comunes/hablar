@@ -25,4 +25,6 @@ public interface RosterDisplay extends Display {
 
 	void setActive(boolean active);
 
+    void clear();
+
 }

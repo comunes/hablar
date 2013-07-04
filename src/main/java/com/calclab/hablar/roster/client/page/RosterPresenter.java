@@ -8,11 +8,14 @@ import com.calclab.emite.core.client.xmpp.session.SessionStates;
 import com.calclab.emite.core.client.xmpp.session.XmppSession;
 import com.calclab.emite.im.client.chat.ChatManager;
 import com.calclab.emite.im.client.roster.RosterGroup;
+import com.calclab.emite.im.client.roster.RosterItem;
 import com.calclab.emite.im.client.roster.XmppRoster;
 import com.calclab.emite.im.client.roster.events.RosterGroupChangedEvent;
 import com.calclab.emite.im.client.roster.events.RosterGroupChangedHandler;
 import com.calclab.emite.im.client.roster.events.RosterItemChangedEvent;
 import com.calclab.emite.im.client.roster.events.RosterItemChangedHandler;
+import com.calclab.emite.im.client.roster.events.RosterRetrievedEvent;
+import com.calclab.emite.im.client.roster.events.RosterRetrievedHandler;
 import com.calclab.hablar.core.client.mvp.HablarEventBus;
 import com.calclab.hablar.core.client.page.Page;
 import com.calclab.hablar.core.client.page.PagePresenter;
@@ -149,6 +152,12 @@ public class RosterPresenter extends PagePresenter<RosterDisplay> implements Ros
 				}
 			}
 		});
+         roster.addRosterRetrievedHandler(new RosterRetrievedHandler() {
+             @Override
+             public void onRosterRetrieved(final RosterRetrievedEvent event) {
+                 loadRoster();
+                     }
+                 });
 
 		if (roster.isRosterReady()) {
 			loadRoster();
@@ -160,7 +169,7 @@ public class RosterPresenter extends PagePresenter<RosterDisplay> implements Ros
 		session.addSessionStateChangedHandler(true, new StateChangedHandler() {
 			@Override
 			public void onStateChanged(final StateChangedEvent event) {
-				setSessionState();
+                setSessionState(event.getState());
 			}
 		});
 
@@ -179,18 +188,41 @@ public class RosterPresenter extends PagePresenter<RosterDisplay> implements Ros
 
 	private void loadRoster() {
 		GWT.log("LOAD ROSTER");
-		groupPresenters.clear();
+        clear();
 		for (final RosterGroup group : roster.getRosterGroups()) {
 			createGroup(group);
 		}
+        for (final RosterItem item : roster.getItems()) {
+            for (final RosterGroupPresenter groupPresenter : groupPresenters.values()) {
+                groupPresenter.rosterItemChanged(item);
+            }
+        }
+    }
+
+    private void clear() {
+        // for (final RosterGroupPresenter group : groupPresenters.values()) {
+        // display.remove(group);
+        // }
+        // display.clear();
+        groupPresenters.clear();
 	}
 
-	private void setSessionState() {
-		final boolean isActive = SessionStates.ready.equals(session.getSessionState());
+    private void setSessionState(final String state) {
+        // final boolean isActive = session.isReady();
+        final boolean isActive = session.isReady();
 		if (active != isActive) {
 			active = isActive;
 			display.setActive(active);
 		}
+        if (SessionStates.loggingOut.equals(state)) {
+            // clear();
 	}
+        if (isActive) {
+            // com.google.gwt.user.client.Window.alert("roster " +
+            // roster.getItems().size() + " "
+            // + roster.getGroupNames().size());
+        }
+    }
+
 
 }

@@ -114,7 +114,7 @@ public class UserPage extends PagePresenter<UserDisplay> {
 	}
 
 	private void updatePageState(final String sessionState, final Presence presence) {
-		if (SessionStates.ready.equals(sessionState)) {
+        if (SessionStates.isReady(sessionState)) {
 			String userStatus = presence != null ? presence.getStatus() : "";
 			userStatus = (userStatus == null) || userStatus.isEmpty() ? "" : " - " + userStatus;
 			model.setPageTitle(session.getCurrentUserURI().getShortName() + userStatus);
