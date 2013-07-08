@@ -26,6 +26,15 @@ public class AvatarWidget extends Composite implements AvatarDisplay {
 		avatarPanel.addStyleDependentName(size);
 		
 		initWidget(avatarPanel);
+
+        // We set the size to not depend on external services
+        // from {@link GravatarConfig.class}
+        //
+        if ("tiny".equals(getSize())) {
+            avatarImage.setSize("16px", "16px");
+        } else {
+            avatarImage.setSize("50px", "50px");
+        }
 	}
 
 	@Override
