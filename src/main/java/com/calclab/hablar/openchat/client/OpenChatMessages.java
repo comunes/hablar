@@ -6,29 +6,29 @@ import com.google.gwt.i18n.client.Messages;
 
 @DefaultLocale("en")
 public interface OpenChatMessages extends Messages {
-	public static final OpenChatMessages msg = GWT.create(OpenChatMessages.class);
+    public static final OpenChatMessages msg = GWT.create(OpenChatMessages.class);
 
-	@DefaultMessage("Add to roster")
-	String addToRosterLabelText();
+    @DefaultMessage("Add to your contacts")
+    String addToRosterLabelText();
 
-	@DefaultMessage("You can''t chat with yourself")
-	String currentUserJidNotAllowed();
+    @DefaultMessage("You can''t chat with yourself")
+    String currentUserJidNotAllowed();
 
-	@DefaultMessage("JabberId can''t be empty")
-	String jabberIdIsEmpty();
+    @DefaultMessage("The chat account can''t be empty")
+    String jabberIdIsEmpty();
 
-	@DefaultMessage("Jabber ID:")
-	String jabberIdLabelText();
+    @DefaultMessage("Chat account (like somename@gmail.com):")
+    String jabberIdLabelText();
 
-	@DefaultMessage("It should be a valid Jabber ID like name@server.net")
-	String jabberIdNotValid();
+    @DefaultMessage("It should be a valid chat account like somename@gmail.com")
+    String jabberIdNotValid();
 
-	@DefaultMessage("Open Chat")
-	String openChatAction();
+    @DefaultMessage("Open Chat")
+    String openChatAction();
 
-	@DefaultMessage("Open New Chat")
-	String openNewChat();
+    @DefaultMessage("Open New Chat")
+    String openNewChat();
 
-	@DefaultMessage("Open a New Chat")
-	String openNewChatLabelText();
+    @DefaultMessage("Open a New Chat")
+    String openNewChatLabelText();
 }
