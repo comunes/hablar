@@ -14,7 +14,9 @@ import com.calclab.hablar.signals.client.preferences.SignalsPreferencesWidget;
 import com.calclab.hablar.signals.client.unattended.UnattendedPagesManager;
 import com.calclab.hablar.signals.client.unattended.UnattendedPresenter;
 import com.calclab.hablar.user.client.UserContainer;
+import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasText;
 
@@ -25,7 +27,15 @@ public class HablarSignals {
 
 	public HablarSignals(final Hablar hablar, final XmppSession session, final PrivateStorageManager storageManager) {
 		final HablarEventBus eventBus = hablar.getEventBus();
-
+		ScriptInjector.fromUrl("/jgrowl/jquery-1.6.2.js").setCallback(
+				new Callback<Void, Exception>() {
+					public void onFailure(Exception reason) {
+						throw new IllegalStateException("Socket.io script load failed!");
+					}
+					public void onSuccess(Void result) {
+						ScriptInjector.fromUrl("/jgrowl/jquery.jgrowl.js").setWindow(ScriptInjector.TOP_WINDOW).inject();
+					}
+				}).setWindow(ScriptInjector.TOP_WINDOW).inject();
 		final HasText titleDisplay = new HasText() {
 			@Override
 			public String getText() {

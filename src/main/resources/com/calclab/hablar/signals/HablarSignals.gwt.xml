@@ -9,8 +9,6 @@
 	<inherits name='com.calclab.hablar.user.HablarUser' />
 	<inherits name='com.calclab.emite.xep.storage.EmitePrivateStorage' />
 
-	<script src="jgrowl/jquery-1.6.2.js" />
-	<script src="jgrowl/jquery.jgrowl.js" />
 	<stylesheet src="jgrowl/jquery.jgrowl.css" />
 
 	<source path="client" />
